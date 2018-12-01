@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Palin-Around-Paris_Looping (online-audio-converter.com).wav-1cabfe436c60bd75f82e2841bcb93e4b.sample"
+
+[deps]
+
+source_file="res://Assets/Palin-Around-Paris_Looping (online-audio-converter.com).wav"
+dest_files=[ "res://.import/Palin-Around-Paris_Looping (online-audio-converter.com).wav-1cabfe436c60bd75f82e2841bcb93e4b.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

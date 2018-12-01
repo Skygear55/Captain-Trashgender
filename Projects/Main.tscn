@@ -1,0 +1,179 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://Main.gd" type="Script" id=1]
+[ext_resource path="res://Y-chromosome.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/Background.png" type="Texture" id=3]
+[ext_resource path="res://Player.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Platform.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Assets/Xolonium-Regular.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://Label.gd" type="Script" id=7]
+[ext_resource path="res://HUD.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Assets/gameover.wav" type="AudioStream" id=9]
+[ext_resource path="res://Assets/Palin-Around-Paris_Looping (online-audio-converter.com).wav" type="AudioStream" id=10]
+
+[sub_resource type="Curve2D" id=1]
+
+bake_interval = 5.0
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 1912.17, 4.71631, 0, 0, 0, 0, 1919.34, 1083.36, 0, 0, 0, 0, -3.55323, 1088.14, 0, 0, 0, 0, -8.33655, -7.242, 0, 0, 0, 0, -3.55322, -4.85033, 0, 0, 0, 0, 1912.17, 4.71631, 0, 0, 0, 0, -8.27783, -11.8858, 0, 0, 0, 0, 954.396, -35.8528, 0, 0, 0, 0, 954.396, 0.0976563, 0, 0, 0, 0, 954.396, 12.0812, 0, 0, 0, 0, 1046.27, 12.0812, 0, 0, 0, 0, 1937.04, 8.08667, 0, 0, 0, 0, 1921.06, 16.0757, 0, 0, 0, 0, 1929.05, 1090.6, 0, 0, 0, 0, 974.369, 1090.6, 0, 0, 0, 0, -8.27783, 1086.6, 0, 0, 0, 0, -4.28333, -3.89685, 0, 0, 0, 0, 1912.17, 4.71631, 0, 0, 0, 0, 938.418, 1110.57, 0, 0, 0, 0, 1349.85, 1106.57, 0, 0, 0, 0, 1357.84, 1106.57, 0, 0, 0, 0, 1869.14, 739.08, 0, 0, 0, 0, 1218.03, 902.854, 0, 0, 0, 0, 27.6726, 866.904, 0, 0, 0, 0, 1912.17, 4.71631 )
+}
+
+[sub_resource type="DynamicFont" id=2]
+
+size = 30
+use_mipmaps = false
+use_filter = false
+font_data = ExtResource( 6 )
+_sections_unfolded = [ "Font", "Settings" ]
+
+[node name="Main" type="Node" index="0"]
+
+script = ExtResource( 1 )
+_sections_unfolded = [ "Pause" ]
+Y = ExtResource( 2 )
+min_speed = 200
+max_speed = 300
+
+[node name="Sprite" type="Sprite" parent="." index="0"]
+
+position = Vector2( 962.888, 538.574 )
+scale = Vector2( 1.0081, 1.00866 )
+texture = ExtResource( 3 )
+
+[node name="Player" parent="." index="1" instance=ExtResource( 4 )]
+
+position = Vector2( 965.183, 633.615 )
+scale = Vector2( 1.5, 1.5 )
+_sections_unfolded = [ "Collision", "Transform", "collision" ]
+
+[node name="Platform" parent="." index="2" instance=ExtResource( 5 )]
+
+position = Vector2( 1079.02, 738.393 )
+rotation = 3.14159
+scale = Vector2( 13.8299, -1.49853 )
+
+[node name="StartPosition" type="Position2D" parent="." index="3"]
+
+position = Vector2( 963.734, 679.493 )
+scale = Vector2( 2.32855, -2.01544 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="StartTimer" type="Timer" parent="." index="4"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = true
+autostart = false
+
+[node name="ScoreTimer" type="Timer" parent="." index="5"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = false
+
+[node name="yTimer" type="Timer" parent="." index="6"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = false
+
+[node name="SpawnTimer" type="Timer" parent="." index="7"]
+
+process_mode = 1
+wait_time = 0.1
+one_shot = false
+autostart = false
+
+[node name="MobPath" type="Path2D" parent="." index="8"]
+
+self_modulate = Color( 0.5, 0.6, 1, 0.7 )
+curve = SubResource( 1 )
+
+[node name="SpawnLocation" type="PathFollow2D" parent="MobPath" index="0"]
+
+position = Vector2( 1912.17, 4.71631 )
+rotation = 1.56419
+offset = 0.0
+h_offset = 0.0
+v_offset = 0.0
+rotate = true
+cubic_interp = true
+loop = true
+lookahead = 4.0
+
+[node name="Label" type="Label" parent="." index="9"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 40.0
+margin_bottom = 37.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 2 )
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+script = ExtResource( 7 )
+_sections_unfolded = [ "custom_fonts" ]
+
+[node name="HUD" parent="." index="10" instance=ExtResource( 8 )]
+
+[node name="Death" type="AudioStreamPlayer" parent="." index="11"]
+
+stream = ExtResource( 9 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[node name="Music" type="AudioStreamPlayer" parent="." index="12"]
+
+stream = ExtResource( 10 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[node name="Label2" type="Label" parent="." index="13"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 894.0
+margin_right = 136.0
+margin_bottom = 993.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "Music by Eric Matyas
+www.soundimage.org
+
+
+"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[connection signal="timeout" from="StartTimer" to="." method="_on_StartTimer_timeout"]
+
+[connection signal="timeout" from="ScoreTimer" to="." method="_on_ScoreTimer_timeout"]
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_SpawnTimer_timeout"]
+
+[connection signal="start_game" from="HUD" to="." method="_on_HUD_start_game"]
+
+
