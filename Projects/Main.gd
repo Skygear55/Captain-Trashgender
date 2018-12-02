@@ -69,6 +69,9 @@ func game_over():
 
 
 func new_game():
+    $SpawnTimer.wait_time = 0.1
+    min_speed = 300
+    max_speed = 400
     $Music.play()
     $Player.position = $StartPosition.position 
     $Player.x_chromo = 30
